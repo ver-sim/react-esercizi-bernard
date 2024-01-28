@@ -1,10 +1,11 @@
+Traccia n. 1
 Use fetch to call the following endpoint: https://random-data-api.com/api/users/random_user?size=4, which randomly returns 4 users
 Create a new file called Card.js
 Inside Card.js, define a new class component called Card that accepts a user as a prop and displays the name, surname, email address, city, state, and avatar
 Display the returned API content using a card for each received user.
  
 ////////////////////////////////////
-
+Traccia n. 2
 1. Create a new file called Navigation.js
 2. Inside Navigation.js, define a new class component called Navigation
 3. Use the component's state to keep track of the current page
@@ -12,7 +13,7 @@ Display the returned API content using a card for each received user.
 5. Display the content of the current page in the component.
  
 /////////////////////////////////////////////////////
-
+Traccia n.3
 1. Create a Login component called Login
 2. Add a new class component called Login
 3. Use the component's state to keep track of user credentials (username and password)

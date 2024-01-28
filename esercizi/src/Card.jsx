@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import './Card.css'
+
 export const Card = () => {
   const [user, setUserData] = useState(null);
   const [error, setError] = useState(false);
@@ -30,7 +31,7 @@ export const Card = () => {
         {error && <p>Error {error}</p>}
         <ul >
             {user && user.map((val, index) => (
-                <li key={index} style={{border: "1px solid black"}}>
+                <li key={index}>
                     <h3>{`${val.first_name} ${val.last_name}`}</h3>
                     <p>{val.email}</p>
                     <p>City: {val.address.city}</p>
