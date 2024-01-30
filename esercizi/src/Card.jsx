@@ -1,45 +1,54 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import './Card.css'
+import { useEffect, useState } from "react";
+import "./Card.css"
 
 export const Card = () => {
-  const [user, setUserData] = useState(null);
+  const [dataFetch, setDataFetch] = useState(null);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    const fetchApi = async () => {
-        try {
-            const resp = await fetch("https://random-data-api.com/api/users/random_user?size=4");
-    
-            if(resp.ok){
-                setError(false);
-                const json = await resp.json();
-                setUserData(json);
-            } else {
-                setError(true);
-            }     
-        } catch (error) {
-            setError(error)
-        }
+  const getData = async () => {
+    try {
+        const resp = await fetch('https://random-data-api.com/api/users/random_user?size=10');
+        if(resp.ok){
+            const json = await resp.json();
+            setDataFetch(json);
+        }else {
+            setError(true);
+        }      
+    } catch (error) {
+        setError(error);
     }
-    fetchApi();
-  }, []);
+ }
+  useEffect(() => {
+    
+    getData();
+  }, [])
+
+  const handleFetch = () => {
+    getData()
+  }
 
   return (
     <div>
-        {!user && !error && <h2>Loading...</h2>}
-        {error && <p>Error {error}</p>}
-        <ul >
-            {user && user.map((val, index) => (
+        <button onClick={handleFetch}>Fetch Random</button>
+        {!dataFetch && !error && <h3>Loading...</h3> }
+        {error && <p>Error: {error}</p>}
+        <ul>
+            {dataFetch && dataFetch.map((val, index) => (
                 <li key={index}>
-                    <h3>{`${val.first_name} ${val.last_name}`}</h3>
-                    <p>{val.email}</p>
-                    <p>City: {val.address.city}</p>
-                    <p>State: {val.address.state}</p>
-                    <img src={val.avatar} alt="" width={100} />
-                </li>
+                    <div className="back">
+                        <h3>More information here</h3>
+                    </div>
+                    <div className="front">
+                        <img src={val.avatar} alt="" />
+                        <h3>{`${val.first_name} ${val.last_name}`}</h3>
+                        <p>{val.employment.title}</p>
+                    </div>
+                    
+                </li> 
             ))}
         </ul>
+
+
     </div>
-  );
+  )
 }
